@@ -17,3 +17,5 @@ for opt in options:
    cmd = 'echo "%s = \\\"%s\\\"" >> "%s"' %(parameter, value, config_file)
    ret = subprocess.getstatusoutput(cmd)
    print (int(ret[0]) == 0)
+
+# test push
