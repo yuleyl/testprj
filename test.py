@@ -30,23 +30,18 @@ response = "<html>%s</html>" % something
 request = "<html>%s</html>" % request.parameters('something')
 
 # SQL Injection
-@app.route("/login")
-def login():
-
-  username = request.values.get('username')
-  password = request.values.get('password')
-
-  # Prepare database connection
-  db = pymysql.connect("localhost")
-  cursor = db.cursor()
-
-  # Execute the vulnerable SQL query concatenating user-provided input.
-  cursor.execute("SELECT * FROM users WHERE username = '%s' AND password = '%s'" % (username, password))
-
-  # If the query returns any matching record, consider the current user logged in.
-  record = cursor.fetchone()
-  if record:
-    session['logged_user'] = username
-
-  # disconnect from server
-  db.close()
+int main(int argc, char** argv) {
+  char *userName = argv[2];
+  
+  // BAD
+  char query1[1000] = {0};
+  sprintf(query1, "SELECT UID FROM USERS where name = \"%s\"", userName);
+  runSql(query1);
+  
+  // GOOD
+  char userNameSql[1000] = {0};
+  encodeSqlString(userNameSql, 1000, userName); 
+  char query2[1000] = {0};
+  sprintf(query2, "SELECT UID FROM USERS where name = \"%s\"", userNameSql);
+  runSql(query2);
+}
