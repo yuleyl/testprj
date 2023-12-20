@@ -19,3 +19,13 @@ for opt in options:
    print (int(ret[0]) == 0)
 
 # test push
+
+# Embedded API Credentials
+TWITTER_OAUTH_TOKEN = "dkedjekdjekldjekldje"
+TWITTER_OAUTH_SECRET = "dkejkdjekdjkejdkjekdjekjdkjed"
+
+# Constructed SQL/HTML/JavaScript
+something="test_something"
+response = "<html>%s</html>" % something
+request = "<html>%s</html>" % request.parameters('something')
+
